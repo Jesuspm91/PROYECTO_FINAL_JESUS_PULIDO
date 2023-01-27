@@ -1,0 +1,15 @@
+{% extends "vzla/base.html" %}
+
+{% block subtitulo %}Crear Turismo{% endblock subtitulo %}
+
+{% block contenido %}
+<form method="post">
+  {% csrf_token %}
+  {{ formulario.as_p }}
+  <input type="submit" value="Enviar" />
+</form>
+
+<br>
+<a href="{% url 'turismo' %}">Volver a Turismo</a>
+
+{% endblock contenido %}

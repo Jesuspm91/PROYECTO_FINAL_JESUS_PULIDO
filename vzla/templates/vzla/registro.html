@@ -1,0 +1,11 @@
+{% extends "vzla/base.html" %}
+
+{% block subtitulo %}Registro de nuevo usuario{% endblock subtitulo %}
+
+{% block contenido %}
+<form method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' value='Registrarse' />
+</form>
+{% endblock contenido %}

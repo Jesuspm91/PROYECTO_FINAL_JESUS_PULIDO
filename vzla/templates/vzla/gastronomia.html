@@ -1,0 +1,45 @@
+{% extends "vzla/base.html" %}
+
+{% block subtitulo %}GASTRONOMIA{% endblock subtitulo %}
+
+{% block contenido %}
+<section>
+    <div>
+        <h1>GASTRONOMIA</h1>
+        <ul>
+        <h2>Nuestra Gastronomia</h2>
+        <a href="{% url 'crear_gastro' %}">Añadir</a>
+        <ul>   
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Nombre</th>
+                <th>Ingredientes</th>
+                <th>Descripcion</th>
+                <td>Ver</td>
+                <td>Editar</td>
+                <td>Eliminar</td>
+            </tr>
+            {% for gastro in gastronomia %}
+            <tr>
+                <td>{{ gastro.nombre }}</td>
+                <td>{{ gastro.ingredientes }}</td>
+                <td>{{ gastro.descripcion }}</td>
+                <td>
+                <a href="">Ver</a>
+                </td>
+                <td>
+                <a href="">Editar</a>
+                </td>
+                <td>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="eliminar"/>
+                </form
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>    
+    </div>
+    {% endblock contenido %}
