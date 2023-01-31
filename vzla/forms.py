@@ -18,8 +18,13 @@ class Turismo_crear(forms.Form):
     descripcion = forms.CharField (widget = forms.Textarea)
 
 class UserRegisterForm(UserCreationForm):
-    password1 = forms.CharField(label = 'Contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label = 'Repetir contraseña', widget=forms.PasswordInput)
+    password1 = forms.CharField(label = 'Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label = 'Confirm Password', widget=forms.PasswordInput)
     class Meta:
         model = User
-        fields = {'username','first_name','last_name','email','password1','password2'}
+        fields = ['username','first_name','last_name','email','password1','password2']
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['last_name', 'first_name', 'email']

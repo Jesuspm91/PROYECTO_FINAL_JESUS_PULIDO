@@ -3,9 +3,10 @@
 {% block subtitulo %}Registro de nuevo usuario{% endblock subtitulo %}
 
 {% block contenido %}
-<form method='post'>
+
+<form action = "" method = "post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{form.as_ul }}
     <input type='submit' value='Registrarse' />
 </form>
 {% endblock contenido %}

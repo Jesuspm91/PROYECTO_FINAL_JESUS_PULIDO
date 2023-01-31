@@ -1,0 +1,11 @@
+{% extends "vzla/base.html" %}
+
+{% block subtitulo %}Inicio de Sesion{% endblock subtitulo %}
+
+{% block contenido %}
+<form method = "post">
+    {% csrf_token %}
+    {{form.as_ul }}
+    <input type='submit' value='Iniciar Sesion' />
+</form>
+{% endblock contenido %}

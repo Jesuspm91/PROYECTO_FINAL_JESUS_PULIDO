@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from vzla.models import Paisajes,Gastronomia,Turismo
-from vzla.forms import Gastro_crear, Paisaje_crear, Turismo_crear, UserRegisterForm
+from vzla.forms import Gastro_crear, Paisaje_crear, Turismo_crear, UserRegisterForm,UserUpdateForm
 
 #user admin pass EntregaFinal
 
@@ -76,7 +76,6 @@ def crear_turismo(request):
 def registro(request):
     if request.method == "POST":
         formulario = UserRegisterForm(request.POST)
-        
         if formulario.is_valid():
             formulario.save()
             url_existosa = reverse('inicio')
@@ -84,3 +83,33 @@ def registro(request):
     else:
         formulario = UserRegisterForm()
     return render(request=request, template_name='vzla/registro.html', context = {'form': formulario},)
+
+def login_view(request): 
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            usuario = data.get('username')
+            password = data.get('password')
+            user = authenticate(username=usuario,password=password)
+            if user:
+                login(request=request,user=user)
+                url_exitosa = reverse('inicio')
+                return redirect(url_exitosa)     
+    else: #GET
+        form = AuthenticationForm()
+    return render(request=request, 
+                template_name='vzla/login.html', 
+                context = {'form': form},)
+
+class logout_view(LogoutView):
+    template_name = 'vzla/logout.html'
+    #next_page = reverse_lazy('inicio')
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    success_url = reverse_lazy('inicio')
+    template_name = 'vzla/formulario_perfil.html'
+    def get_object(self, queryset=None):
+        return self.request.user

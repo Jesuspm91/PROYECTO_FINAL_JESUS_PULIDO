@@ -4,5 +4,6 @@
 
 {% block contenido %}
 {% include "vzla/saludo.html" %}
-<h1>Bienvenidos a Venezuela</h1>
+<h1>Bienvenidos a Venezuela. </h1>
+<h1>{{request.user.first_name}} {{request.user.last_name}}</h1>
 {% endblock contenido %}
