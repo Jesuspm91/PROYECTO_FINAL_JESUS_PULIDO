@@ -1,9 +1,6 @@
 {% extends "vzla/base.html" %}
-
 {% block subtitulo %}TURISMO{% endblock subtitulo %}
-
 {% block contenido %}
-<section>
     <div>
         <h1>TURISMO</h1>
         <ul>
@@ -24,18 +21,16 @@
             <tr>
                 <td>{{ turis.nombre }}</td>
                 <td>{{ turis.comidas }}</td>
-                <td>{{ turis.descripcion }}</td>
+                <td>{{ turis.paisajes }}</td>
                 <td>
-                <a href="">Ver</a>
+                <a href="{% url 'detalle_turismo' turis.id %}">Ver</a>
                 </td>
                 <td>
-                <a href="">Editar</a>
+                <a href="{% url 'editar_turismo' turis.id %}">Editar</a>
                 </td>
                 <td>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="eliminar"/>
-                </form
+                <a href="{% url 'eliminar_turismo' turis.id %}">Eliminar</a>
+                </td>
                 </td>
             </tr>
             {% endfor %}

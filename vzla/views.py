@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -13,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from vzla.models import Paisajes,Gastronomia,Turismo
-from vzla.forms import Gastro_crear, Paisaje_crear, Turismo_crear, UserRegisterForm,UserUpdateForm
+from vzla.forms import Gastro_crear, Paisaje_crear, Turismo_crear, UserRegisterForm,UserUpdateForm, AvatarFormulario
 
 #user admin pass EntregaFinal
 
@@ -22,18 +21,22 @@ def inicio(request):
         request=request,
         template_name='vzla/inicio.html',)
 
+@login_required
 def paisajes(request):
     context = {'paisajes' : Paisajes.objects.all()}
     return render(request=request,template_name='vzla/paisajes.html', context=context)
 
+@login_required
 def gastronomia(request):
     context = {'gastronomia' : Gastronomia.objects.all()}
     return render(request=request,template_name='vzla/gastronomia.html',context=context)
+
 
 def turismo(request):
     context = {'turismo' : Turismo.objects.all()}    
     return render(request=request,template_name='vzla/turismo.html',context=context)
 
+@login_required
 def crear_gastro(request):
     if request.method == "POST":
         formulario = Gastro_crear(request.POST)
@@ -47,6 +50,7 @@ def crear_gastro(request):
         formulario = Gastro_crear()
     return render(request=request, template_name='vzla/crear_gastro.html', context = {'formulario': formulario},)
 
+@login_required
 def crear_paisaje(request):
     if request.method == "POST":
         formulario = Paisaje_crear(request.POST)
@@ -60,6 +64,7 @@ def crear_paisaje(request):
         formulario = Paisaje_crear()
     return render(request=request, template_name='vzla/crear_paisaje.html', context = {'formulario': formulario},)
 
+@login_required
 def crear_turismo(request):
     if request.method == "POST":
         formulario = Turismo_crear(request.POST)
@@ -104,7 +109,6 @@ def login_view(request):
 
 class logout_view(LogoutView):
     template_name = 'vzla/logout.html'
-    #next_page = reverse_lazy('inicio')
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = User
@@ -113,3 +117,76 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'vzla/formulario_perfil.html'
     def get_object(self, queryset=None):
         return self.request.user
+
+def agregar_avatar(request):
+    if request.method == "POST":
+        formulario = AvatarFormulario(request.POST, request.FILES)
+        if formulario.is_valid():
+            avatar = formulario.save()
+            avatar.user = request.user
+            avatar.save()
+            url_exitosa = reverse('inicio')
+            return redirect(url_exitosa)
+    else: 
+        formulario = AvatarFormulario()
+    return render(
+        request=request,
+        template_name='vzla/formulario_avatar.html',
+        context={'form': formulario},)
+
+@login_required
+def P_DetailView(request, id):
+    paisaje = Paisajes.objects.get(id=id)
+    contexto = {'paisaje': paisaje}
+    return render(request=request,
+        template_name='vzla/detalle_paisaje.html',
+        context=contexto,)
+
+@login_required
+def G_DetailView(request, id):
+    gastronomia = Gastronomia.objects.get(id=id)
+    contexto = {'gastronomia': gastronomia}
+    return render(request=request,
+        template_name='vzla/detalle_gastronomia.html',
+        context=contexto,)
+
+@login_required
+def T_DetailView(request, id):
+    turismo = Turismo.objects.get(id=id)
+    contexto = {'turismo': turismo}
+    return render(request=request,
+        template_name='vzla/detalle_turismo.html',
+        context=contexto,)
+
+class G_DeleteView(LoginRequiredMixin, DeleteView):
+    model = Gastronomia
+    success_url = reverse_lazy('gastronomia')
+    template_name = "vzla/conf_eliminacion.html"
+
+class P_DeleteView(LoginRequiredMixin, DeleteView):
+    model = Paisajes
+    success_url = reverse_lazy('paisajes')
+    template_name = "vzla/conf_eliminacion.html"
+
+class T_DeleteView(LoginRequiredMixin, DeleteView):
+    model = Turismo
+    success_url = reverse_lazy('turismo')
+    template_name = "vzla/conf_eliminacion.html"
+
+class G_UpdateView(LoginRequiredMixin, UpdateView):
+    model = Gastronomia
+    fields = ['nombre', 'ingredientes', 'descripcion']
+    success_url = reverse_lazy('gastronomia')
+    template_name = "vzla/editar_gastronomia.html"
+
+class P_UpdateView(LoginRequiredMixin, UpdateView):
+    model = Paisajes
+    fields = ['nombre', 'estados', 'descripcion']
+    success_url = reverse_lazy('paisajes')
+    template_name = "vzla/editar_paisaje.html"
+
+class T_UpdateView(LoginRequiredMixin, UpdateView):
+    model = Turismo
+    fields = ['nombre', 'comidas', 'paisajes','fecha_limite','descripcion']
+    success_url = reverse_lazy('turismo')
+    template_name = "vzla/editar_turismo.html"

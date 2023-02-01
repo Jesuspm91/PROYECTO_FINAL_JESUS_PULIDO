@@ -1,0 +1,16 @@
+{% extends "vzla/base.html" %}
+
+{% block subtitulo %}Editar Paisaje{% endblock subtitulo %}
+
+{% block contenido %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Enviar" />
+</form>
+
+<br>
+<a href="{% url 'paisajes' %}">Volver lista</a>
+
+{% endblock contenido %}

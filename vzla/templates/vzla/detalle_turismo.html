@@ -1,0 +1,11 @@
+{% extends "vzla/base.html" %}
+
+{% block subtitulo %}Detalle de paquete turistico{% endblock subtitulo %}
+
+{% block contenido %}
+<div align="center">
+    <h1>{{turismo.nombre}}</h1>
+
+    <a href="{% url 'turismo' %}">Volver a paquetes turisticos</a>
+<div>
+{% endblock contenido %}

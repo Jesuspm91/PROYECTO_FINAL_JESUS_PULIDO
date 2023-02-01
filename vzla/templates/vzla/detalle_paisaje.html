@@ -1,0 +1,11 @@
+{% extends "vzla/base.html" %}
+
+{% block subtitulo %}Detalle de nuestro paisaje{% endblock subtitulo %}
+
+{% block contenido %}
+<div align="center">
+    <h1>{{paisajes.nombre}}</h1>
+
+    <a href="{% url 'paisajes' %}">Volver a la paisajes</a>
+<div>
+{% endblock contenido %}

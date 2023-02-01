@@ -1,0 +1,11 @@
+{% extends "vzla/base.html" %}
+
+{% block subtitulo %}Detalle de gastronomia{% endblock subtitulo %}
+
+{% block contenido %}
+<div align="center">
+    </h1>{{gastronomia.nombre}}</h1>
+<div align="left">
+    <a href="{% url 'gastronomia' %}">Volver a la gastronomia</a>
+<div>
+{% endblock contenido %}
