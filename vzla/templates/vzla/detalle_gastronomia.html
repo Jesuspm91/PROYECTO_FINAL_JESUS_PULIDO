@@ -4,8 +4,23 @@
 
 {% block contenido %}
 <div align="center">
-    </h1>{{gastronomia.nombre}}</h1>
-<div align="left">
+    <td><img src="{{ gastronomia.imagen.url }}"style="width:500px;"/></td>
+    <TABLE BORDER>
+        <TR><TH> Nombre: </TH>
+            <TD></TD><TD></TD>
+            <TD> {{ gastronomia.nombre }} </TD></TR>
+            <TD></TD>
+        <TR><TH> Ingredientes: </TH>
+            <TD></TD><TD></TD>
+            <TD> {{ gastronomia.ingredientes }} </TD></TR>
+            <TD>
+        <TR><TH> Descripcion: </TH>
+            <TD></TD><TD></TD>
+            <TD> {{ gastronomia.descripcion }} </TD>
+            <TD>
+    </TABLE>
+<div>
+<div align="center">
     <a href="{% url 'gastronomia' %}">Volver a la gastronomia</a>
 <div>
 {% endblock contenido %}

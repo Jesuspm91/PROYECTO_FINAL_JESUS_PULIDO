@@ -3,7 +3,7 @@
 {% block subtitulo %}Crear Turismo{% endblock subtitulo %}
 
 {% block contenido %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ formulario.as_p }}
   <input type="submit" value="Enviar" />

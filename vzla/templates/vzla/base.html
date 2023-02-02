@@ -26,41 +26,43 @@
 
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'inicio' %}">INICIO</a>
-                <a class="navbar-brand" href="{% url 'turismo' %}">TURISMO</a>
-                <a class="navbar-brand" href="{% url 'gastronomia' %}">GASTRONOMIA</a>
-                <a class="navbar-brand" href="{% url 'paisajes' %}">PAISAJES</a>
-                {% if user.is_authenticated %}
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div style="display: inline-grid";align = "center">
-                            <span style="">{{ user.username }}</span>
-                            <div align = "center">
-                                <img src="{{ user.avatar.imagen.url }}" style="width:50px;"/>
-                            </div>
+
+    </div>
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'inicio' %}">INICIO</a>
+            <a class="navbar-brand" href="{% url 'turismo' %}">TURISMO</a>
+            <a class="navbar-brand" href="{% url 'gastronomia' %}">GASTRONOMIA</a>
+            <a class="navbar-brand" href="{% url 'paisajes' %}">PAISAJES</a>
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div style="display: inline-grid";align = "center">
+                        <span style="">{{ user.username }}</span>
+                        <div align = "center">
+                            <img src="{{ user.avatar.imagen.url }}" style="width:50px;"/>
                         </div>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li>
-                            <a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar mis datos</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'agregar_avatar' %}">Agregar Avatar</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'logout' %}"><strong>Cerrar Sesión</strong></a></li>
-                        </li>
-                    </ul>
-                  </div>
-                </div>
-                {% else %}
-                <a class="btn btn-primary" href="{% url 'login' %}">Iniciar sesión</a>
-                <a class="btn btn-secondary" href="{% url 'registro' %}">Registro</a>
-                {% endif %}
+                    </div>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li>
+                        <a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar mis datos</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'agregar_avatar' %}">Agregar Avatar</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'logout' %}"><strong>Cerrar Sesión</strong></a></li>
+                    </li>
+                </ul>
+              </div>
             </div>
-        </nav>
+            {% else %}
+            <a class="btn btn-primary" href="{% url 'login' %}" >Iniciar sesión</a>
+            <a class="btn btn-secondary" href="{% url 'registro' %}">Registro</a>
+            {% endif %}
+        </div>
+    </nav>
 
         <section style="padding:90px 50px;">
             {% block contenido %}

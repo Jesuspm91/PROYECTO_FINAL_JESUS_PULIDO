@@ -1,13 +1,11 @@
-from datetime import datetime
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
-from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth import login, authenticate
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -21,6 +19,11 @@ def inicio(request):
         request=request,
         template_name='vzla/inicio.html',)
 
+def about(request):
+    return render(
+        request=request,
+        template_name='vzla/about.html',)
+
 @login_required
 def paisajes(request):
     context = {'paisajes' : Paisajes.objects.all()}
@@ -31,7 +34,6 @@ def gastronomia(request):
     context = {'gastronomia' : Gastronomia.objects.all()}
     return render(request=request,template_name='vzla/gastronomia.html',context=context)
 
-
 def turismo(request):
     context = {'turismo' : Turismo.objects.all()}    
     return render(request=request,template_name='vzla/turismo.html',context=context)
@@ -39,10 +41,11 @@ def turismo(request):
 @login_required
 def crear_gastro(request):
     if request.method == "POST":
-        formulario = Gastro_crear(request.POST)
+        formulario = Gastro_crear(request.POST,request.FILES)
         if formulario.is_valid():
             data = formulario.cleaned_data
-            gastronomia = Gastronomia(nombre=data['nombre'], ingredientes=data['ingredientes'], descripcion=data['descripcion'])
+            gastronomia = Gastronomia(nombre=data['nombre'], ingredientes=data['ingredientes'],
+                descripcion=data['descripcion'],imagen=data['imagen'])
             gastronomia.save()
             url_existosa = reverse('gastronomia')
             return redirect(url_existosa)
@@ -53,10 +56,11 @@ def crear_gastro(request):
 @login_required
 def crear_paisaje(request):
     if request.method == "POST":
-        formulario = Paisaje_crear(request.POST)
+        formulario = Paisaje_crear(request.POST,request.FILES)
         if formulario.is_valid():
             data = formulario.cleaned_data
-            paisaje = Paisajes(nombre=data['nombre'], estados=data['estados'], descripcion=data['descripcion'])
+            paisaje = Paisajes(nombre=data['nombre'], estados=data['estados'],
+                descripcion=data['descripcion'],imagen=data['imagen'])
             paisaje.save()
             url_existosa = reverse('paisajes')
             return redirect(url_existosa)
@@ -67,10 +71,11 @@ def crear_paisaje(request):
 @login_required
 def crear_turismo(request):
     if request.method == "POST":
-        formulario = Turismo_crear(request.POST)
+        formulario = Turismo_crear(request.POST,request.FILES)
         if formulario.is_valid():
             data = formulario.cleaned_data
-            turismo = Turismo(nombre=data['nombre'], comidas=data['comidas'], descripcion=data['descripcion'])
+            turismo = Turismo(nombre=data['nombre'], comidas=data['comidas'],paisajes=data['paisajes'],
+                fecha_limite=data['fecha_limite'],descripcion=data['descripcion'],imagen=data['imagen'])
             turismo.save()
             url_existosa = reverse('turismo')
             return redirect(url_existosa)

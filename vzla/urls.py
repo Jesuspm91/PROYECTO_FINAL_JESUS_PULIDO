@@ -1,6 +1,6 @@
 from django.urls import path
 
-from vzla.views import (
+from vzla.views import (about,
     paisajes, gastronomia, turismo,
     crear_gastro, crear_paisaje, crear_turismo,
     P_DetailView, G_DetailView, T_DetailView,
@@ -10,6 +10,7 @@ from vzla.views import (
     ProfileUpdateView,agregar_avatar,
 )
 urlpatterns = [
+    path('about/', about, name='about'),
     # Modelos
     path('paisajes/', paisajes, name='paisajes'),
     path('gastronomia/', gastronomia, name='gastronomia'),

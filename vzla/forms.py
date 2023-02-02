@@ -1,24 +1,22 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from vzla.models import Avatar
+from vzla.models import Avatar, Gastronomia, Paisajes, Turismo
 
-class Gastro_crear(forms.Form):    
-    nombre = forms.CharField(max_length=64)    
-    ingredientes = forms.CharField(max_length=128)    
-    descripcion = forms.CharField (widget = forms.Textarea)
+class Gastro_crear(forms.ModelForm):   
+    class Meta: 
+        model = Gastronomia
+        fields = ['nombre','ingredientes','descripcion','imagen']
 
-class Paisaje_crear(forms.Form):    
-    nombre = forms.CharField(max_length=64)    
-    estados = forms.CharField(max_length=128)    
-    descripcion = forms.CharField (widget = forms.Textarea)
+class Paisaje_crear(forms.ModelForm):  
+    class Meta:   
+        model = Paisajes
+        fields = ['nombre','estados','descripcion','imagen']
 
-class Turismo_crear(forms.Form):    
-    nombre = forms.CharField(max_length=64)    
-    comidas = forms.CharField(max_length=128)    
-    descripcion = forms.CharField (widget = forms.Textarea)
-    paisajes = forms.CharField(max_length=128)
-    fecha_limite = forms.DateField()
+class Turismo_crear(forms.ModelForm):   
+    class Meta:   
+        model = Turismo
+        fields = ['nombre','comidas','descripcion','paisajes','fecha_limite','imagen'] 
 
 class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(label = 'Password', widget=forms.PasswordInput)
