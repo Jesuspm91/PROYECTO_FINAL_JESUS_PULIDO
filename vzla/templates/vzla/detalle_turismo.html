@@ -4,31 +4,32 @@
 
 {% block contenido %}
 <div align="center">
-    <td><img src="{{ turismo.imagen.url }}"style="width:500px;"/></td>
+    <h2>{{ turismo.nombre }}</h2>
+    <br>
+    <td><img src="{{ turismo.imagen.url }}"style="width:500px;"/></td><br>
     <TABLE BORDER>
-        <TR><TH> Nombre: </TH>
-            <TD></TD><TD></TD>
-            <TD> {{ turismo.nombre }} </TD></TR>
-            <TD></TD>
+        <br>
         <TR><TH> Comidas: </TH>
-            <TD></TD><TD></TD>
+            <TD>
             <TD> {{ turismo.comidas }} </TD></TR>
             <TD>
         <TR><TH> Paisajes: </TH>
-            <TD></TD><TD></TD>
+            <TD>
             <TD> {{ turismo.paisajes }} </TD></TR>
             <TD>
         <TR><TH> Fecha Limite: </TH>
-            <TD></TD><TD></TD>
+            <TD>
             <TD> {{ turismo.fecha_limite }} </TD></TR>
             <TD>
         <TR><TH> Descripcion: </TH>
-            <TD></TD><TD></TD>
+            <TD>
             <TD> {{ turismo.descripcion }} </TD>
             <TD>
     </TABLE>
 <div>
+    <br>
+    <br>
 <div align="center">
-    <a href="{% url 'turismo' %}">Volver a paquetes turisticos</a>
+    <a class='vinculo' href="{% url 'turismo' %}">Volver a paquetes turisticos</a>
 <div>
 {% endblock contenido %}

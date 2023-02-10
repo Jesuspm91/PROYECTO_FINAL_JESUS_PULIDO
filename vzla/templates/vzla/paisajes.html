@@ -2,19 +2,20 @@
 {% block subtitulo %}PAISAJES{% endblock subtitulo %}
 {% block contenido %}
     <div>
-        <h1>PAISAJES</h1>
+        <h1 align="center">PAISAJES</h1>
         <ul>
         <h2>Nuestros Paisajes</h2>
-        <a href="{% url 'crear_paisaje' %}">Añadir</a>
+        <a class='vinculo' href="{% url 'crear_paisaje' %}">Añadir</a>
+        <br></br>
         <ul>   
         <table class="table">
             <tbody>
             <tr>
                 <th>Nombre</th>
                 <th>Estados</th>
-                <td>Ver</td>
-                <td>Editar</td>
-                <td>Eliminar</td>
+                <th>Ver</td>
+                <th>Editar</td>
+                <th>Eliminar</td>
             </tr>
             {% for paisaje in paisajes %}
             <tr>

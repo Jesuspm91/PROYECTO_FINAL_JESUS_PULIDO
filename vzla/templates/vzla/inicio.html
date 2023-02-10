@@ -4,14 +4,15 @@
 
 {% block contenido %}
 <div align = "center">
-    <img src="{{ user.avatar.imagen.url }}" style="width:400px;"/>
+    {% if user.is_authenticated %}
+    <img src="{{ user.avatar.imagen.url }}" style="width:200px;"/>
+    {% endif %}
     {% include "vzla/saludo.html" %}
-    <h1>Bienvenidos a Venezuela. </h1>
+    <h1 class='caja'>Bienvenidos a Venezuela. </h1>
     <h1>{{request.user.first_name}} {{request.user.last_name}}</h1>
 </div>
 
-
 <div align="center">
-    <a href="{% url 'about' %}">Acerca de mi</a>
+    <a class='vinculo' href="{% url 'about' %}">Acerca de mi</a>
 <div>
 {% endblock contenido %}

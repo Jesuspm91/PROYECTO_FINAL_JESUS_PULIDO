@@ -4,12 +4,11 @@
 
 {% block contenido %}
 <div align="center">
-    <td><img src="{{ paisaje.imagen.url }}"style="width:500px;"/></td>
+    <h2>{{ paisaje.nombre }}</h2>
+    <br>
+    <td><img src="{{ paisaje.imagen.url }}"style="width:500px;"/></td>    <br>
     <TABLE BORDER>
-        <TR><TH> Nombre: </TH>
-            <TD></TD><TD></TD>
-            <TD> {{ paisaje.nombre }} </TD></TR>
-            <TD></TD>
+        <br>
         <TR><TH> Estados: </TH>
             <TD></TD><TD></TD>
             <TD> {{ paisaje.estados }} </TD></TR>
@@ -19,7 +18,9 @@
             <TD> {{ paisaje.descripcion }} </TD>
             <TD>
     </TABLE>
+    <br>
+    <br>
     <div align="center">
-        <a href="{% url 'paisajes' %}">Volver a la paisajes</a>
+        <a class='vinculo' href="{% url 'paisajes' %}">Volver a la paisajes</a>
     <div>
 {% endblock contenido %}

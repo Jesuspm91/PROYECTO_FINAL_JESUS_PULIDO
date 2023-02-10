@@ -2,20 +2,21 @@
 {% block subtitulo %}TURISMO{% endblock subtitulo %}
 {% block contenido %}
     <div>
-        <h1>TURISMO</h1>
+        <h1 align="center">TURISMO</h1>
         <ul>
         <h2>Nuestros paquetes turisticos</h2>
-        <a href="{% url 'crear_turismo' %}">Añadir</a>
-
+        <a class='vinculo' href="{% url 'crear_turismo' %}">Añadir</a>
+        <br></br>
+        <ul>
         <table class="table">
             <tbody>
             <tr>
                 <th>Nombre</th>
                 <th>Comidas</th>
                 <th>Paisaje</th>
-                <td>Ver</td>
-                <td>Editar</td>
-                <td>Eliminar</td>
+                <th>Ver</td>
+                <th>Editar</td>
+                <th>Eliminar</td>
             </tr>
             {% for turis in turismo %}
             <tr>

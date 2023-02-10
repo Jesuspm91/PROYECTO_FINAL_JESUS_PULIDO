@@ -1,4 +1,107 @@
-@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+}
+
+body{
+    background-color: #b6b6b6;
+}
+
+.header{
+    background-color: #1b3039;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 125;
+    padding: 5px 1%;
+}
+
+.header .logo{
+    cursor: pointer;
+}
+
+.header .logo img{
+    height: 70px;
+    width: auto;
+    transition: all 0.3s;
+}
+
+.header .logo img:hover{
+    transform: scale(1.2);
+}
+
+.header .nav-links{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    list-style: none;
+    TEXT-ALIGN: CENTER;
+    WIDTH: 1000;
+}
+
+.header .nav-links li{
+    display: inline-block;
+    padding: 0 20px;    
+}
+
+.header .nav-links li:hover{
+    transform: scale(1.1);
+}
+
+.header .nav-links a{
+    font-size: 40;
+    color: #eceff1;
+    text-decoration: none;    
+}
+
+.header .nav-links li a:hover{
+    color: #ffbc0e;
+}
+
+.header .boton button{
+    font-weight: 50;
+    color: #1b3039;
+    padding: 9px 25px;
+    background: #eceff1;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.header .boton button:hover{
+    background-color: #e2f1f8;
+    color: #ffbc0e;
+    transform: scale(1.1);
+}
+
+.vinculo{
+    color: #000;
+    font-weight: bold;
+    border-bottom-style: solid;
+    width: 300;
+}
+
+.field_container{
+  font-family: 'Nunito', sans-serif;
+  font-size: 25;
+  text-align: -webkit-center;
+}
+label{
+  font-weight: bold;
+  display: inline-block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 30;
+}
+
+th, td {
+  padding: 5px;
+}
+<!--------------------------------------------------------------->
 /*!
 * Start Bootstrap - Clean Blog v6.0.8 (https://startbootstrap.com/theme/clean-blog)
 * Copyright 2013-2022 Start Bootstrap
@@ -3014,8 +3117,8 @@ textarea.form-control-lg {
 }
 .btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #006a81;
-  border-color: #006479;
+  background-color: #fbfbfb;
+  border-color: #ff008c;
 }
 .btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.25rem rgba(38, 151, 175, 0.5);
@@ -3027,14 +3130,21 @@ textarea.form-control-lg {
 }
 
 .btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+  font-family: 'Nunito', sans-serif;
+  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 125;
+  color: #eceff1;
+  background-color: #1b3039;
+  border-color: #1b3039;
+  align-items: center;
 }
 .btn-secondary:hover {
-  color: #fff;
-  background-color: #5c636a;
-  border-color: #565e64;
+    color: #fff;
+    background-color: #1b3039;
+    border-color: #1b3039;
 }
 .btn-check:focus + .btn-secondary, .btn-secondary:focus {
   color: #fff;

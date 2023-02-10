@@ -5,11 +5,17 @@
 {% block contenido %}
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {{ formulario.as_p }}
-  <input type="submit" value="Enviar" />
-</form>
-
+  {% for field in formulario %}
+  <div class="field_container">
+      {{ field.errors }}
+      {{ field.label_tag }} <br>
+      {{ field }}
+  {% endfor %}
 <br>
-<a href="{% url 'gastronomia' %}">Volver a Gastronomia</a>
+<br>
+  <input type="submit" value="Enviar" />
+<br>
+<br>
+<a class='vinculo' href="{% url 'gastronomia' %}">Volver a Gastronomia</a>
 
 {% endblock contenido %}

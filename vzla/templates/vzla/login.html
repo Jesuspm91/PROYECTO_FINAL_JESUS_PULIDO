@@ -1,11 +1,23 @@
 {% extends "vzla/base.html" %}
 
 {% block subtitulo %}Inicio de Sesion{% endblock subtitulo %}
-
+<!--{{form.as_ul }}-->
 {% block contenido %}
 <form method = "post">
     {% csrf_token %}
-    {{form.as_ul }}
+    {% for field in form %}
+        <div class="field_container">
+            {{ field.errors }}
+            {{ field.label_tag }} <br>
+            {{ field }}
+    {% endfor %}
+    <br>
+    <br>
     <input type='submit' value='Iniciar Sesion' />
 </form>
+<br>
+<br>
+<div align="center">
+    <a class='vinculo' href="{% url 'registro' %}">Nuevo Usuario</a>
+<div>
 {% endblock contenido %}

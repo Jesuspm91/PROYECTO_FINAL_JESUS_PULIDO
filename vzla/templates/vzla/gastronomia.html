@@ -2,19 +2,20 @@
 {% block subtitulo %}GASTRONOMIA{% endblock subtitulo %}
 {% block contenido %}
     <div>
-        <h1>GASTRONOMIA</h1>
+        <h1 align="center">GASTRONOMIA</h1>
         <ul>
         <h2>Nuestra Gastronomia</h2>
-        <a href="{% url 'crear_gastro' %}">Añadir</a>
-        <ul>   
+        <a class='vinculo' href="{% url 'crear_gastro' %}">Añadir</a>
+        <br></br>
+        <ul>
         <table class="table">
             <tbody>
             <tr>
                 <th>Nombre</th>
                 <th>Ingredientes</th>
-                <td>Ver</td>
-                <td>Editar</td>
-                <td>Eliminar</td>
+                <th>Ver</td>
+                <th>Editar</td>
+                <th>Eliminar</td>
             </tr>
             {% for gastro in gastronomia %}
             <tr>
